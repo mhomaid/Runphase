@@ -1,0 +1,39 @@
+# Secrets (blocks Agent / Tab / Inline Edit; .gitignore is index-only)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json
+kubeconfig
+*.kubeconfig
+
+# Build / vendor
+node_modules/
+.next/
+dist/
+bin/
+vendor/
+.venv/
+__pycache__/
+
+# ML artifacts
+models/
+checkpoints/
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.gguf
+datasets/
+data/raw/
+wandb/
+mlruns/
+
+# Local cluster / lab noise
+.kind/
+.kube/
+*.log
+coverage/
+tmp/
