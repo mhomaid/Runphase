@@ -1,0 +1,10 @@
+---
+description: Python uses uv and Next.js uses bun. Do not use conda, pip, npm, or pnpm for this work.
+alwaysApply: true
+---
+
+# Tooling
+
+- Python: `uv` only. Create and run environments with `uv venv`, `uv add`, `uv sync`, and `uv run`. Do not use conda, miniconda, pip, poetry, or pipenv.
+- Next.js (`apps/web`): `bun` only. Install, run, and lock the frontend with `bun install`, `bun run`, and `bun.lock`. Do not use npm, pnpm, or yarn.
+- Go stays Go. `cmd/` and `internal/` are not Python or TypeScript.
