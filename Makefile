@@ -1,4 +1,4 @@
-.PHONY: help test lint fmt vet check generate dev dev-down dev-status dev-logs api worker web migrate
+.PHONY: help test lint fmt vet check generate dev dev-down dev-status dev-logs api worker web migrate openapi-check
 
 COMPOSE := docker compose --project-name runphase -f deploy/compose/docker-compose.yml
 
@@ -19,6 +19,7 @@ help:
 	@echo "  make worker     placeholder; worker starts in a later task"
 	@echo "  make web        placeholder; web app starts in a later task"
 	@echo "  make migrate    apply Runphase database migrations"
+	@echo "  make openapi-check  validate the OpenAPI document"
 
 test:
 	go test ./...
@@ -60,3 +61,6 @@ web:
 
 migrate:
 	go run ./cmd/migrate
+
+openapi-check:
+	go test ./api/openapi/

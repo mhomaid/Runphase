@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Runphase API
+  version: 0.0.1
+  description: |
+    Process health for the Runphase control-plane API.
+    This document describes implemented behavior only.
+    Future product resources will live under /api/v1.
+servers:
+  - url: http://localhost:8081
+    description: Local development
+paths:
+  /healthz:
+    get:
+      operationId: getHealth
+      summary: Report that the API process is running
+      responses:
+        "200":
+          description: The API process is running.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusResponse"
+        "405":
+          description: The method is not GET. The body is plain text from the HTTP server.
+  /readyz:
+    get:
+      operationId: getReady
+      summary: Report that the API process initialized
+      responses:
+        "200":
+          description: The API process initialized successfully. This does not check PostgreSQL or Temporal.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusResponse"
+        "405":
+          description: The method is not GET. The body is plain text from the HTTP server.
+components:
+  schemas:
+    StatusResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+      example:
+        status: ok
