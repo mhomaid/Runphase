@@ -1,4 +1,6 @@
-.PHONY: help test lint fmt vet check generate dev dev-down api worker web migrate
+.PHONY: help test lint fmt vet check generate dev dev-down dev-status dev-logs api worker web migrate
+
+COMPOSE := docker compose --project-name runphase -f deploy/compose/docker-compose.yml
 
 help:
 	@echo "Runphase"
@@ -9,8 +11,10 @@ help:
 	@echo "  make vet        run go vet ./..."
 	@echo "  make check      run fmt, vet, test, and lint"
 	@echo "  make generate   run go generate ./..."
-	@echo "  make dev        placeholder; services start in a later task"
-	@echo "  make dev-down   placeholder; teardown starts in a later task"
+	@echo "  make dev        start local Postgres and Temporal"
+	@echo "  make dev-status show local infrastructure status"
+	@echo "  make dev-logs   show recent local infrastructure logs"
+	@echo "  make dev-down   stop local Postgres and Temporal; keep data"
 	@echo "  make api        placeholder; API server starts in a later task"
 	@echo "  make worker     placeholder; worker starts in a later task"
 	@echo "  make web        placeholder; web app starts in a later task"
@@ -34,10 +38,16 @@ generate:
 	go generate ./...
 
 dev:
-	@echo "dev environment not implemented yet; added in W1-03+"
+	$(COMPOSE) up -d --wait
 
 dev-down:
-	@echo "dev environment not implemented yet; added in W1-03+"
+	$(COMPOSE) down
+
+dev-status:
+	$(COMPOSE) ps
+
+dev-logs:
+	$(COMPOSE) logs --tail=200
 
 api:
 	@echo "api not implemented yet"
