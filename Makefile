@@ -1,3 +1,12 @@
-.PHONY: help
+.PHONY: help test lint
+
 help:
-	@echo "Runphase — targets will land with the V0 skeleton"
+	@echo "Runphase"
+	@echo "  make test   run Go unit tests"
+	@echo "  make lint   run golangci-lint"
+
+test:
+	go test ./...
+
+lint:
+	golangci-lint run ./...
