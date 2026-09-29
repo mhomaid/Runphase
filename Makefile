@@ -18,7 +18,7 @@ help:
 	@echo "  make api        run the API server locally"
 	@echo "  make worker     placeholder; worker starts in a later task"
 	@echo "  make web        placeholder; web app starts in a later task"
-	@echo "  make migrate    placeholder; migrations start in a later task"
+	@echo "  make migrate    apply Runphase database migrations"
 
 test:
 	go test ./...
@@ -59,4 +59,4 @@ web:
 	@echo "web not implemented yet"
 
 migrate:
-	@echo "migrate not implemented yet"
+	go run ./cmd/migrate
