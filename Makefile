@@ -15,7 +15,7 @@ help:
 	@echo "  make dev-status show local infrastructure status"
 	@echo "  make dev-logs   show recent local infrastructure logs"
 	@echo "  make dev-down   stop local Postgres and Temporal; keep data"
-	@echo "  make api        placeholder; API server starts in a later task"
+	@echo "  make api        run the API server locally"
 	@echo "  make worker     placeholder; worker starts in a later task"
 	@echo "  make web        placeholder; web app starts in a later task"
 	@echo "  make migrate    placeholder; migrations start in a later task"
@@ -50,7 +50,7 @@ dev-logs:
 	$(COMPOSE) logs --tail=200
 
 api:
-	@echo "api not implemented yet"
+	go run ./cmd/apiserver
 
 worker:
 	@echo "worker not implemented yet"
